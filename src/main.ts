@@ -32,6 +32,7 @@ async function run(): Promise<void> {
         info(`PR #${pull_number} is targetted at ${pr.base.ref} (${pr.base.sha})`)
 
         const buildScript = getInput('build-script') || 'build'
+        const installScriptArg = getInput('install-command') || null
         const workingDir = path.join(process.cwd(), args.directory)
         info(`Working directory : ${workingDir}`)
 
@@ -54,6 +55,9 @@ async function run(): Promise<void> {
             }
         } else if (packageLock) {
             installScript = `npm ci`
+        }
+        if (installScriptArg) {
+            installScript = installScriptArg
         }
 
         startGroup(`[current branch] Install Dependencies`)

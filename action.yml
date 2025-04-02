@@ -11,6 +11,8 @@ inputs:
   repo-token:
     description: 'The GITHUB_TOKEN secret'
     required: true
+  install-command:
+    description: 'The install command'
   build-script:
     description: 'The npm-script to run that builds your project'
     default: 'build'
